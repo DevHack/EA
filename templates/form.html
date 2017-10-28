@@ -1,0 +1,63 @@
+<div class="gfa-form-wrapper">
+  <section class="form-section" layout="row" flex>
+
+    <md-sidenav
+        class="md-sidenav-left"
+        md-component-id="left"
+        md-is-locked-open="$mdMedia('gt-sm')"
+        md-whiteframe="4">
+
+      <div class="left-nav-rail">
+        <div class="item-circle" ui-sref="form.basicInformation" ui-sref-active="active" ng-class="{ 'completed': isAllowedState('form.basicInformation') }"></div>
+        <div class="item-line"></div>
+        <div class="item-circle" ui-sref="form.degreeSelection" ui-sref-active="active" ng-class="{ 'completed': isAllowedState('form.degreeSelection') }"></div>
+        <div class="item-line"></div>
+        <div class="item-circle" ui-sref="form.courseList" ui-sref-active="active" ng-class="{ 'completed': isAllowedState('form.courseList') }"></div>
+        <div class="item-line"></div>
+        <div class="item-circle" ui-sref="form.completeApplication" ui-sref-active="active" ng-class="{ 'completed': isAllowedState('form.completeApplication') }"></div>
+        <div class="item-line"></div>
+        <div class="item-circle" ui-sref="form.confirmation" ui-sref-active="active" ng-class="{ 'completed': isAllowedState('form.confirmation') }"></div>
+      </div>
+
+      <md-content layout-padding>
+        <md-menu-item>
+          <md-button ui-sref="form.basicInformation" ui-sref-active="active" ng-click="sideNavButtonClicked()">Basic Information</md-button>
+        </md-menu-item>
+        <md-menu-item>
+          <md-button ui-sref="form.degreeSelection" ui-sref-active="active" ng-click="sideNavButtonClicked()">Academic Interest</md-button>
+        </md-menu-item>
+        <md-menu-item>
+          <md-button ui-sref="form.courseList" ui-sref-active="active" ng-click="sideNavButtonClicked()">Course List</md-button>
+        </md-menu-item>
+        <md-menu-item>
+          <md-button ui-sref="form.completeApplication" ui-sref-active="active" ng-click="sideNavButtonClicked()">Complete Information</md-button>
+        </md-menu-item>
+        <md-menu-item>
+          <md-button ui-sref="form.confirmation" ui-sref-active="active" ng-click="sideNavButtonClicked()">Confirmation</md-button>
+        </md-menu-item>
+      </md-content>
+      <div class="divider right"></div>
+      <div class="logo">
+        <img src="{{baseUrl}}img/gfa_logo.svg" />
+      </div>
+    </md-sidenav>
+
+    <md-content flex layout-padding>
+      <div class="mobile-menu-wrapper">
+        <md-button class="md-icon-button mobile-menu-button" aria-label="Open Menu" ng-click="toggleSidenav()" hide-gt-sm ng-hide="showHelpMenu()">
+          <md-icon md-svg-icon="{{baseUrl}}img/icons/progress_menu.svg"></md-icon>
+        </md-button>
+        <md-button class="md-icon-button mobile-help-menu-button" aria-label="Help" ng-click="toggleHelpMenu()" hide-gt-sm ng-hide="showHelpMenu()">
+          <md-icon md-svg-icon="{{baseUrl}}img/icons/light_bulb.svg"></md-icon>
+        </md-button>
+        <md-button class="md-icon-button mobile-close-menu-button" aria-label="Close help" ng-click="toggleHelpMenu()" hide-gt-sm ng-show="showHelpMenu()">
+          <md-icon md-svg-icon="{{baseUrl}}img/icons/close.svg"></md-icon>
+        </md-button>
+      </div>
+      <div class="content-wrapper" ui-view></div>
+    </md-content>
+
+  </section>
+</div>
+<div class="gold-background"><img src="{{baseUrl}}img/gold_block.svg"></img></div>
+<img class="asu-logo" src="{{baseUrl}}img/asu_logo.svg" />

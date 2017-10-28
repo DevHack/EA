@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="34px" height="34px" viewBox="0 0 34 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.2 (15855) - http://www.bohemiancoding.com/sketch -->
+    <title>warning</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="warning" sketch:type="MSLayerGroup" transform="translate(1.000000, 1.000000)" stroke="#CCCCCC">
+            <g id="icons" sketch:type="MSShapeGroup">
+                <g id="warning">
+                    <g id="Group">
+                        <path d="M0,15.786624 C0,7.067904 7.06816,-0.000256 15.78688,-0.000256 C24.5056,-0.000256 31.57312,7.067904 31.57312,15.786624 C31.57312,24.505344 24.5056,31.573504 15.78688,31.573504 C7.06816,31.573504 0,24.505344 0,15.786624" id="Fill-1" stroke-width="2"></path>
+                        <path d="M15.7,7.5 L15.7,18.5" id="Line" stroke-width="3"></path>
+                        <path d="M15.7,20.5 L15.7,23.5" id="Line-Copy" stroke-width="3"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

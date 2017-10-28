@@ -1,0 +1,27 @@
+<div layout="row">
+  <div class="main-panel" flex="60" flex-xs="100" flex-sm="100" ng-show="$parent.showMainContent()">
+    <div ng-if="!under22AndMissingRecommendedCourses()">
+      <div class="header caps">Almost Finished...</div>
+      <p>Dear {{form.firstName}},</p>
+      <p>Here are your proposed classes for your earned admission track. Press submit below to finalize your track and follow the instructions on the next page to officially register for your courses.</p>
+
+      <div class="selected-courses">
+        <div class="course-selected" ng-repeat="courseId in form.selectedCourseIds">
+          <md-icon class="course-selected-icon" md-svg-icon="{{$parent.baseUrl}}img/icons/select.svg"></md-icon> {{availableCoursesMap[courseId].courseName}}
+        </div>
+      </div>
+    </div>
+    <div ng-if="under22AndMissingRecommendedCourses()">
+      <div class="header caps">We have noticed something...</div>
+      <p>{{form.firstName}}, it looks like you've already completed some first-year college courses. Press submit and then follow the instructions on the next screen.</p>
+    </div>
+
+    <md-progress-circular class="float-right" md-mode="indeterminate" md-diameter="30" ng-show="loading"></md-progress-circular>
+    <md-button type="submit" class="md-raised md-primary float-right confirmation-next" ng-click="next()" ng-show="!loading">Submit</md-button>
+  </div>
+  <div class="help-pane center" flex="40" flex-xs="100" flex-sm="100" layout-padding ng-show="$parent.showHelpMenu()">
+    <div class="divider left"></div>
+    <img class="help-icon" src="{{$parent.baseUrl}}img/help_confirmation.svg" />
+    <p>Did you know? You can take up to ten courses online through Global Freshman Academy prior to applying to college.</p>
+  </div>
+</div>

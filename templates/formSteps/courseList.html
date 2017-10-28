@@ -1,0 +1,50 @@
+<div layout="row">
+  <div class="main-panel" flex="60" flex-xs="100" flex-sm="100" ng-show="$parent.showMainContent()">
+    <form name="coursesForm">
+      <div ng-show="!fullList">
+        <p class="intro-text less-padding" ng-if="userAge < 22">We recommend you take eight courses to earn your admission into ASU, but you can choose more courses that interest you from the list below.</p>
+        <p class="intro-text less-padding" ng-if="userAge >= 22">We recommend you take these four courses to get started earning your admission to ASU, but you can choose different courses or select more than four if you'd like on the next screen.</p>
+        <div ng-repeat="course in availableCourses" ng-mouseover="setTooltip(course)" ng-mouseleave="clearTooltip()">
+          <md-checkbox ng-if="course.recommended" class="course-checkbox" ng-model="selectedCourseIds[course.courseId]" aria-label="{{course.courseName}}">
+            {{course.courseName}} <md-icon hide-gt-sm class="info-icon" ng-click="setTooltip(course); $parent.toggleHelpMenu(); $event.stopPropagation();" md-svg-icon="{{$parent.baseUrl}}img/icons/info.svg"></md-icon>
+          </md-checkbox>
+        </div>
+
+        <div>
+          <div class="button-question">Have you previously completed any of the above courses?</div>
+          <md-button class="round" ng-class="{ 'active' : form.alreadyTakenCoursesOnList === 'Yes' }" ng-click="form.alreadyTakenCoursesOnList = 'Yes'">Yes</md-button>
+          <md-button class="round" ng-class="{ 'active' : form.alreadyTakenCoursesOnList === 'No' }" ng-click="form.alreadyTakenCoursesOnList = 'No'">No</md-button>
+          <md-button class="round" ng-class="{ 'active' : form.alreadyTakenCoursesOnList === 'I will complete this later' }" ng-click="form.alreadyTakenCoursesOnList = 'I will complete this later'">I will complete this later</md-button>
+          <div class="round-button-alert" ng-if="form.alreadyTakenCoursesOnList === 'Yes'">Please uncheck the course(s) from the list and move on to the next page to select replacements.</div>
+        </div>
+
+        <div>
+          <div class="button-question">Would you like to add additional courses to your list now? (You can do this later if you prefer.)</div>
+          <md-button class="round" ng-class="{ 'active' : form.addMoreCourses === 'Yes' }" ng-click="form.addMoreCourses = 'Yes'">Yes</md-button>
+          <md-button class="round" ng-class="{ 'active' : form.addMoreCourses === 'No' }" ng-click="form.addMoreCourses = 'No'">No</md-button>
+        </div>
+      </div>
+
+      <div ng-show="fullList">
+        <p class="intro-text less-padding" ng-if="userAge < 22">We recommend you take eight courses to earn your admission into ASU, but you can choose one or more courses that interest you from the list below.</p>
+        <p class="intro-text less-padding" ng-if="userAge >= 22">We recommend you take four courses to earn your admission into ASU, but you can choose one or more courses that interest you from the list below.</p>
+        <div ng-repeat="course in availableCourses" ng-mouseover="setTooltip(course)" ng-mouseleave="clearTooltip()">
+          <md-checkbox class="course-checkbox" ng-model="selectedCourseIds[course.courseId]" aria-label="{{course.courseName}}" ng-disabled="course.recommended && shortListSelectedCourseIds[course.courseId]">
+            {{course.courseName}} <md-icon ng-if="course.recommended" class="recommended-icon" md-svg-icon="{{$parent.baseUrl}}img/icons/recommended.svg"></md-icon> <md-icon hide-gt-sm class="info-icon" ng-click="setTooltip(course); $parent.toggleHelpMenu(); $event.stopPropagation();" md-svg-icon="{{$parent.baseUrl}}img/icons/info.svg"></md-icon>
+          </md-checkbox>
+        </div>
+      </div>
+
+      <md-progress-circular class="float-right" md-mode="indeterminate" md-diameter="30" ng-show="loading"></md-progress-circular>
+      <md-button type="submit" class="md-raised md-primary float-right course-list-next" ng-click="next($event, coursesForm)" ng-show="!loading" ng-disabled="fullList && !validNumberOfCourses()">Next</md-button>
+    </form>
+  </div>
+  <div class="help-pane" flex="40" flex-xs="100" flex-sm="100" layout-padding ng-show="$parent.showHelpMenu()">
+    <div class="divider left"></div>
+    <h4>{{tooltipTitle}}</h4>
+    <p>{{tooltip}}</p>
+    <h4 ng-show="!tooltip">Select your courses</h4>
+    <p ng-show="!tooltip">You need to successfully complete four courses to earn your admission into ASU; however, you can take up to ten courses online through Global Freshman Academy prior to applying to college.</p>
+    <p ng-show="fullList" class="recommended-course-legend"><md-icon class="recommended-icon" md-svg-icon="{{$parent.baseUrl}}img/icons/recommended.svg"></md-icon> Course we highly recommend</p>
+  </div>
+</div>

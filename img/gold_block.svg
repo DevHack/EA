@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="4470px" height="1080px" viewBox="0 0 4470 1080" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>gold_block_</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="-760" y="0" width="5230" height="1080"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="gold_block_">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <g id="Rectangle"></g>
+            <path d="M641.834611,-29.9903918 C645.955609,-37.1754 656.009622,-43 664.289121,-43 L4479.30702,-43 C4487.58731,-43 4494.2998,-36.2934655 4494.2998,-27.9983436 L4494.2998,1083.99834 C4494.2998,1092.28353 4487.59112,1099 4479.29315,1099 L9.30299287,1099 C1.01504669,1099 -2.36458023,1093.17827 1.75806682,1085.99039 L641.834611,-29.9903918 Z" id="Rectangle-4" fill="#FFC627" opacity="0.808302239" mask="url(#mask-2)"></path>
+        </g>
+    </g>
+</svg>

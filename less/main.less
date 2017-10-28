@@ -1,0 +1,555 @@
+// Google Fonts
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400,700|Roboto:300,400,500,700,900');
+
+// Library CSS
+@import "../node_modules/angular-material/angular-material.css";
+
+@base-url: '/earned_admission_app/';
+
+// Colors
+@blue: #00a3e0;
+@gray: #D9D9D9;
+@dark-gray: #aaaaaa;
+@dark-gray2: #9b9b9b;
+@darker-gray: #4a4a4a;
+@background-color: #fafafa;
+
+// Breakpoints
+@mobile-min: 960px;
+@mobile-max: 959px;
+@large-max: 1279px;
+
+// Z-indexes
+@z-background: 10;
+@z-logo: 20;
+@z-modal: 30;
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: url('@{base-url}/img/bg.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+::-webkit-scrollbar-track {
+	// -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #fafafa;
+}
+::-webkit-scrollbar {
+	width: 4px;
+	background-color: #fafafa;
+}
+::-webkit-scrollbar-thumb {
+	background-color: rgb(232, 232, 232);
+}
+
+.asu-logo {
+  position: absolute;
+  z-index: @z-logo;
+  bottom: 20px;
+  left: 50%;
+  margin-left: -90px;
+  width: 180px;
+}
+
+.gold-background {
+  position: absolute;
+  z-index: @z-background;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 30%;
+  overflow: hidden;
+  img {
+    height: 100%;
+  }
+  &.start-hidden {
+    display: none;
+  }
+}
+
+.landing-wrapper {
+  color: @darker-gray;
+  md-content {
+    color: @darker-gray;
+  }
+  position: absolute;
+  z-index: @z-modal;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.6);
+  overflow: hidden;
+  overflow-y: scroll;
+  text-align: center;
+  @media only screen and (min-width: @mobile-min) {
+    top: 20%;
+    right: 20%;
+    bottom: 20%;
+    left: 20%;
+    border-radius: 10px;
+    padding: 5% 11%;
+  }
+  @media only screen and (max-height: 800px) {
+    top: 15%;
+    right: 20%;
+    bottom: 15%;
+    left: 20%;
+    padding: 5% 5%;
+  }
+  @media only screen and (max-height: 600px) {
+    top: 10%;
+    right: 20%;
+    bottom: 10%;
+    left: 20%;
+    padding: 3% 5%;
+  }
+  @media only screen and (max-width: @mobile-max) {
+    top: 10%;
+    right: 5%;
+    bottom: 10%;
+    left: 5%;
+    border-radius: 4px;
+    padding: 5% 5%;
+  }
+  .confirmation-icon {
+    margin-bottom: 20px;
+    @media only screen and (max-width: @mobile-max) {
+      margin-bottom: 16px;
+    }
+    img {
+      width: 60px;
+      @media only screen and (max-width: @mobile-max) {
+        width: 44px;
+      }
+    }
+  }
+  .title {
+    font-size: 1.6em;
+    letter-spacing: 3px;
+    color: @blue;
+    text-transform: uppercase;
+    font-weight: 900;
+    @media only screen and (max-width: @mobile-max) {
+      font-size: 1.5em;
+    }
+  }
+  .intro-text {
+    line-height: 1.6em;
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    @media only screen and (max-width: @mobile-max) {
+      line-height: 1.5em;
+      font-size: 1em;
+      margin-top: 4px;
+      margin-bottom: 16px;
+    }
+  }
+  .redirect-text {
+    margin-top: 10px;
+    color: @dark-gray;
+    font-size: 0.9em;
+  }
+  button.large-round {
+    border-radius: 50px;
+    border: 2px solid @blue;
+    line-height: 40px;
+    min-height: 40px;
+    padding: 0 30px;
+    font-weight: 500;
+    font-size: 1.2em;
+    text-transform: none;
+    &.active {
+      color: white;
+      background-color: @blue;
+    }
+  }
+}
+
+.gfa-form-wrapper {
+  // General
+  color: @darker-gray;
+  md-content {
+    color: @darker-gray;
+  }
+  position: absolute;
+  z-index: @z-modal;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: @background-color;
+  -webkit-box-shadow: 10px 10px 80px 0px rgba(0,0,0,0.3);
+  -moz-box-shadow: 10px 10px 80px 0px rgba(0,0,0,0.3);
+  box-shadow: 10px 10px 80px 0px rgba(0,0,0,0.3);
+  .md-sidenav-left {
+    padding-top: 30px;
+    md-content {
+      background-color: transparent;
+      .md-button {
+        padding-left: 40px;
+        font-size: 0.9em;
+        color: @dark-gray2;
+        font-weight: 400;
+        &.active {
+          color: @blue;
+          font-weight: 700;
+        }
+      }
+    }
+    .left-nav-rail {
+      position: absolute;
+      left: 30px;
+      top: 63px;
+      .item-circle {
+        border-radius: 50%;
+        width: 7px;
+        height: 7px;
+        border: 2px solid @dark-gray;
+        &.completed {
+          border: none;
+          background: url('@{base-url}/img/icons/step_completed.svg') no-repeat;
+          background-size: 11px 11px;
+          width: 11px;
+          height: 11px;
+        }
+        &.active {
+          border: 2px solid transparent;
+          background: @blue;
+          width: 7px;
+          height: 7px;
+        }
+      }
+      .item-line {
+        margin: 3px 0 3px 5px;
+        height: 47px;
+        width: 1px;
+        background-color: @gray;
+      }
+    }
+    .logo {
+      position: absolute;
+      left: 34px;
+      bottom: 44px;
+      img {
+        width: 110px;
+      }
+    }
+  }
+  @media only screen and (min-width: @mobile-min) {
+    overflow: hidden;
+    top: 15%;
+    right: 15%;
+    bottom: 15%;
+    left: 15%;
+    border-radius: 10px;
+    .form-section {
+      height: 100%;
+    }
+    .md-sidenav-left {
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+      box-shadow: none;
+      background-color: transparent;
+    }
+    md-sidenav.md-locked-open {
+      width: 250px;
+      min-width: 250px;
+      max-width: 250px;
+    }
+  }
+  .content-wrapper {
+    @media only screen and (min-width: @mobile-min) {
+      padding-top: 35px;
+      height: 100%;
+      box-sizing: border-box;
+    }
+    @media only screen and (max-width: @mobile-max) {
+      margin: 0 15px;
+    }
+    &>.layout-row {
+      height: 100%;
+    }
+    .main-panel {
+      p {
+        line-height: 1.6em;
+      }
+      .intro-text {
+        padding-bottom: 40px;
+        font-weight: 300;
+        &.less-padding {
+          padding-bottom: 10px;
+        }
+      }
+      @media only screen and (min-width: @mobile-min) {
+        overflow-y: auto;
+        padding-right: 20px;
+      }
+    }
+  }
+  .help-pane {
+    position: relative;
+    height: 100%;
+    padding: 30px 5% 0;
+    color: @dark-gray;
+    @media only screen and (max-width: @mobile-max) {
+      margin-left: 0;
+    }
+    h4 {
+      font-family: 'Roboto Slab', serif;
+      color: @dark-gray;
+      font-weight: 700;
+      font-size: 0.94em;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+    &.center {
+      text-align: center;
+    }
+    .help-icon {
+      width: 40%;
+      min-width: 80px;
+      max-width: 200px;
+    }
+    .divider.left {
+      top: 0;
+      bottom: 29px;
+      padding: 0;
+    }
+    p {
+      line-height: 1.5em;
+    }
+  }
+  .divider {
+    position: absolute;
+    top: 45px;
+    bottom: 45px;
+    width: 1px;
+    background-color: @gray;
+    &.right {
+      right: 0;
+    }
+    &.left {
+      left: 0;
+    }
+    @media only screen and (max-width: @mobile-max) {
+      display: none;
+    }
+  }
+  button.round {
+    border-radius: 50px;
+    border: 2px solid @blue;
+    line-height: 28px;
+    min-height: 28px;
+    padding: 0 14px;
+    font-weight: 400;
+    text-transform: none;
+    &.active {
+      color: white;
+      background-color: @blue;
+    }
+  }
+
+  // Overrides
+  md-input-container label:not(.md-no-float):not(.md-container-ignore) {
+    width: 95%;
+  }
+  md-checkbox .md-icon {
+    border-radius: 50%;
+    top: 4px;
+    left: 4px;
+    width: 14px;
+    height: 14px;
+    &:after {
+      left: 2.9px;
+      top: 0;
+      width: 5px;
+      height: 10px;
+    }
+  }
+  a {
+    color: @darker-gray;
+    &:hover {
+      color: darken(@darker-gray, 10%);
+    }
+    &:active {
+      color: darken(@darker-gray, 10%);
+    }
+    &:visited {
+      color: darken(@darker-gray, 10%);
+    }
+  }
+  .block-datepicker {
+    .md-datepicker-button {
+      display: none;
+    }
+    .md-datepicker-input-container {
+      display: block;
+      padding: 2px 0;
+      margin: 0 3px;
+      .md-datepicker-input:placeholder-shown {
+        font-weight: 500;
+        font-size: 1em;
+        &::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+          color: #ccc;
+        }
+        &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+          color: #ccc;
+        }
+        &::-moz-placeholder { /* Mozilla Firefox 19+ */
+          color: #ccc;
+        }
+        &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+          color: #ccc;
+        }
+      }
+      .md-datepicker-triangle-button {
+        right: 10px;
+      }
+    }
+  }
+  md-checkbox.md-checked .md-icon {
+    background-color: rgba(69, 161, 218, 0.87);
+  }
+  .layout-row.no-margin {
+    md-input-container {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+  md-input-container label,
+  md-input-container.md-input-has-value label {
+    font-weight: 500;
+    color: #ccc;
+  }
+  md-select .md-select-value.md-select-placeholder {
+    font-weight: 500;
+    color: #ccc;
+  }
+
+  // Specific
+  .mobile-menu-wrapper {
+    @media only screen and (min-width: @mobile-min) {
+      display: none;
+    }
+    .mobile-menu-button {
+      margin: 10px 7px 0;
+    }
+    .mobile-help-menu-button {
+      float: right;
+      margin: 10px 7px 0;
+    }
+    .mobile-close-menu-button {
+      margin: 10px 7px 0;
+    }
+  }
+  .degree-tile {
+    color: @dark-gray;
+    font-weight: 500;
+    cursor: pointer;
+    &:focus {
+      outline: none;
+    }
+    img.image {
+      width: 82px;
+      margin-right: 14px;
+    }
+    figure {
+      justify-content: left;
+      padding: 0 10%;
+    }
+    @media only screen and (max-width: 1430px) {
+      figure {
+        display: block;
+        text-align: center;
+      }
+      img.image {
+        width: 94px;
+        margin-right: 0;
+        margin-bottom: 10px;
+      }
+    }
+  }
+  .course-checkbox {
+    .md-label {
+      font-family: 'Roboto Slab', serif;
+      color: @dark-gray2;
+      font-size: 0.9em;
+      font-weight: 400;
+    }
+  }
+  .info-icon {
+    width: 20px;
+    height: 15px;
+    min-width: 20px;
+    min-height: 15px;
+  }
+  .recommended-icon {
+    width: 16px;
+    height: 10px;
+    min-width: 16px;
+    min-height: 10px;
+  }
+  .header {
+    text-align: center;
+    font-size: 1.4em;
+    color: @blue;
+    font-weight: 900;
+    &.caps {
+      text-transform: uppercase;
+    }
+  }
+  .selected-courses {
+    margin-bottom: 20px;
+    &.margin-left {
+      margin-left: 14px;
+    }
+    .course-selected {
+      font-family: 'Roboto Slab', serif;
+      font-size: 0.9em;
+      color: @dark-gray;
+      margin: 10px 0;
+      .course-selected-icon {
+        width: 20px;
+        height: 10px;
+        min-width: 20px;
+        min-height: 10px;
+      }
+    }
+  }
+  .list-number {
+    color: @blue;
+    font-weight: bold;
+  }
+  .float-right {
+    float: right;
+  }
+  md-progress-circular.float-right {
+    margin-right: 20px;
+  }
+  .no-bottom-margin {
+    margin-bottom: 0;
+  }
+  .no-top-margin {
+    margin-top: 0;
+  }
+  .button-question {
+    color: @dark-gray2;
+    font-weight: 400;
+    font-size: 0.86em;
+    margin: 22px 0 8px;
+  }
+  .round-button-alert {
+    color: @dark-gray2;
+    font-weight: 400;
+    font-size: 0.75em;
+  }
+  .recommended-course-legend {
+    font-weight: 400;
+    font-size: 0.7em;
+    line-height: 1em;
+  }
+}

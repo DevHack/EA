@@ -1,0 +1,24 @@
+<div layout="row">
+  <div class="main-panel" flex="60" flex-xs="100" flex-sm="100" ng-show="$parent.showMainContent()">
+    <p class="intro-text less-padding">What are you most interested in studying? This helps us come up with course recommendations.</p>
+    <md-grid-list
+          md-cols="2"
+          md-row-height="144px" md-row-height-xl="110px"
+          md-gutter="12px" md-gutter-gt-sm="8px" >
+      <md-grid-tile class="degree-tile" ng-repeat="degree in availableDegrees" ng-click="selectDegree(degree.degreeName)">
+        <img class="image" ng-if="activeDegree.degreeId !== degree.degreeId" ng-src="{{degree.degreeImageLocationUrlPassive}}" />
+        <img class="image" ng-if="activeDegree.degreeId === degree.degreeId" ng-src="{{degree.degreeImageLocationUrlActive}}" />
+        <div class="degree-tile">{{degree.degreeName}}</div>
+      </md-grid-tile>
+    </md-grid-list>
+    <md-progress-circular class="float-right" md-mode="indeterminate" md-diameter="30" ng-show="loading"></md-progress-circular>
+    <md-button type="submit" class="md-raised md-primary float-right degree-selection-next" ng-click="next($event)" ng-show="!loading">Next</md-button>
+  </div>
+  <div class="help-pane" flex="40" flex-xs="100" flex-sm="100" layout-padding ng-show="$parent.showHelpMenu()">
+    <div class="divider left"></div>
+    <h4>{{activeDegree.degreeName}}</h4>
+    <p>{{activeDegree.degreeTooltip}}</p>
+    <h4 ng-show="!activeDegree">Select your field of study</h4>
+    <p ng-show="!activeDegree">Please select the field that interests you the most. Don't worry, you can always change your mind later.</p>
+  </div>
+</div>

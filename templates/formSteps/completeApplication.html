@@ -1,0 +1,50 @@
+<div layout="row">
+  <div class="main-panel" flex="60" flex-xs="100" flex-sm="100" ng-show="$parent.showMainContent()">
+    <form name="completeApplicationForm">
+      <p class="intro-text less-padding">We have just a few more questions for you.</p>
+
+      <!-- <md-input-container class="md-block">
+        <label>When do you plan to apply to ASU?</label>
+        <md-select required ng-model="form.intendedDegreeSeekingTime">
+          <md-option ng-value="'Fall 2018'">Fall 2018</md-option>
+        </md-select>
+      </md-input-container> -->
+
+      <md-input-container class="md-block no-bottom-margin">
+        <label>Where did you attend high school?</label>
+        <input required ng-model="form.highSchoolAttended" maxlength="100">
+      </md-input-container>
+
+      <md-input-container class="md-block no-top-margin">
+        <label>In which state?</label>
+        <md-select required ng-model="form.highSchoolState">
+          <md-option ng-repeat="state in states" ng-value="state.abbrev">
+            {{state.abbrev}}
+          </md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Which of the following best describes you?</label>
+        <md-select required ng-model="form.whichDescribesYourHSEducation">
+          <md-option ng-repeat="option in $parent.applicationOptions.whichDescribesYourHSEducation" ng-value="option">
+            {{option}}
+          </md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>List the names of any previous colleges you've attended</label>
+        <input required ng-model="form.collegeAttended" maxlength="100">
+      </md-input-container>
+
+      <md-progress-circular class="float-right" md-mode="indeterminate" md-diameter="30" ng-show="loading"></md-progress-circular>
+      <md-button type="submit" class="md-raised md-primary float-right complete-application-next" ng-click="next(completeApplicationForm)" ng-show="!loading">Next</md-button>
+    </form>
+  </div>
+  <div class="help-pane" flex="40" flex-xs="100" flex-sm="100" layout-padding ng-show="$parent.showHelpMenu()">
+    <div class="divider left"></div>
+    <h4>GED</h4>
+    <p>To earn your way into ASU, you must have graduated high school or have earned your GED. You can prepare for your GED and earn your admission into ASU at the same time. Learn how you can take the GED in your state at <a target="_blank" href="https://ged.com">https://ged.com</a></p>
+  </div>
+</div>

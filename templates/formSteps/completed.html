@@ -1,0 +1,26 @@
+<div layout="row">
+  <div class="main-panel" flex="60" flex-xs="100" flex-sm="100" ng-show="$parent.showMainContent()">
+    <div ng-if="!under22AndMissingRecommendedCourses()">
+      <div class="header">You've successfully submitted your Earned Admission Track application!</div>
+      <p>Now that you've selected your courses, you still need to register and enroll in your classes through ASU's Global Freshman Academy and edX.</p>
+      <p><span class="list-number">1.</span> Register and enroll in your courses <a target="_blank" href="https://gfa.asu.edu/courses">here</a></p>
+      <div class="selected-courses margin-left">
+        <div class="course-selected" ng-repeat="courseId in form.selectedCourseIds">
+          <md-icon class="course-selected-icon" md-svg-icon="{{$parent.baseUrl}}img/icons/select.svg"></md-icon> {{availableCoursesMap[courseId].courseName}}
+        </div>
+      </div>
+      <p class="no-bottom-margin"><span class="list-number">2.</span> Look for the email documenting your course track for Earned Admission.</p>
+      <p class="no-top-margin"><span class="list-number">3.</span> Review our <a target="_blank" href="https://gfa.asu.edu/earned-admission-track/resources-and-faqs">FAQs and ASU's Academic Policies</a></p>
+      <p>Visit <a target="_blank" href="https://gfa.asu.edu/earned-admission-track">gfa.asu.edu/earned-admission-track</a> as well as our <a target="_blank" href="https://gfa.asu.edu/earned-admission-track/resources-and-faqs">resource page</a> for more information on earning your admission into ASU. For further questions email us at <a href="mailto:earned@asu.edu">earned@asu.edu</a> or call us at 1.844.691.2241.</p>
+    </div>
+    <div ng-if="under22AndMissingRecommendedCourses()">
+      <div class="header caps">Congratulations!</div>
+      <p>Because you already have some college credit, one of our enrollment specialists will email you within a couple business days to help you build your personalized Earned Admission Track. If you have further questions, please email us at <a href="mailto:earned@asu.edu">earned@asu.edu</a>.</p>
+    </div>
+  </div>
+  <div class="help-pane" flex="40" flex-xs="100" flex-sm="100" layout-padding ng-show="$parent.showHelpMenu()">
+    <div class="divider left"></div>
+    <img class="help-icon" src="{{$parent.baseUrl}}img/edx_logo.svg" />
+    <p>You'll complete your earned admission courses using the edX platform, an online learning destination in partnership with Arizona State University.</p>
+  </div>
+</div>

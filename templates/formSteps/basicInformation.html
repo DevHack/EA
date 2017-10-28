@@ -1,0 +1,34 @@
+<div layout="row">
+  <div class="main-panel" flex="60" flex-xs="100" flex-sm="100" ng-show="$parent.showMainContent()">
+    <form name="basicInformationForm">
+      <div>
+        <p class="intro-text">Tell us a little bit about yourself.</p>
+
+        <div class="no-margin" layout="row" layout-xs="column" layout-sm="column">
+          <md-input-container class="md-block" flex="100">
+            <label>First Name</label>
+            <input required ng-model="form.firstName" maxlength="50">
+          </md-input-container>
+          <md-input-container class="md-block" flex="100">
+            <label>Last Name</label>
+            <input required ng-model="form.lastName" maxlength="50">
+          </md-input-container>
+        </div>
+
+        <md-datepicker class="block-datepicker" ng-model="form.birthdate" md-placeholder="Date of Birth" md-current-view="year" required></md-datepicker>
+
+        <md-input-container class="md-block">
+          <label>Email Address</label>
+          <input required type="email" ng-model="form.emailAddress" maxlength="100">
+        </md-input-container>
+      </div>
+      <md-progress-circular class="float-right" md-mode="indeterminate" md-diameter="30" ng-show="loading"></md-progress-circular>
+      <md-button type="submit" class="md-raised md-primary float-right basic-information-next" ng-click="next($event, basicInformationForm)" ng-show="!loading">Next</md-button>
+    </form>
+  </div>
+  <div class="help-pane center" flex="40" flex-xs="100" flex-sm="100" layout-padding ng-show="$parent.showHelpMenu()">
+    <div class="divider left"></div>
+    <img class="help-icon" src="{{$parent.baseUrl}}img/help_basic_info.svg" />
+    <p>{{$parent.applicationOptions.page1RightPanelCopy}}</p>
+  </div>
+</div>
