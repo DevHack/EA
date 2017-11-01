@@ -1,98 +1,42 @@
-const app = angular.module('gfaForm', ['ui.router', 'ngMaterial']) // eslint-disable-line
-.config(['$stateProvider', '$urlRouterProvider', '$mdThemingProvider', function config($stateProvider, $urlRouterProvider, $mdThemingProvider) {
-  const templateBasePath = '/earned_admission_app/';
+import angular from 'angular';
+import 'angular-material';
+import 'angular-ui-router';
+import Config from "./config";
+import LandingCtrl from "./controllers/LandingCtrl";
+import FormCtrl from "./controllers/FormCtrl";
+import FormBasicInformationCtrl from "./controllers/formSteps/FormBasicInformationCtrl";
+import FormCompleteApplicationCtrl from "./controllers/formSteps/FormCompleteApplicationCtrl";
+import FormCompletedCtrl from "./controllers/formSteps/FormCompletedCtrl";
+import FormConfirmationCtrl from "./controllers/formSteps/FormConfirmationCtrl";
+import FormCourseListCtrl from "./controllers/formSteps/FormCourseListCtrl";
+import FormDegreeSelectionCtrl from "./controllers/formSteps/FormDegreeSelectionCtrl";
+import FormApiFactory from "./services/formApiFactory";
+import FormDataFactory from "./services/formDataFactory";
+import FormHelperFactory from "./services/formHelperFactory";
 
-  $stateProvider.state('cta', {
-    url: '/cta',
-    templateUrl: `${templateBasePath}templates/cta.html`,
-    controller: 'CtaCtrl',
-  });
+export default angular.module('gfaForm', ['ui.router', 'ngMaterial']) // eslint-disable-line
+    .config(Config)
+    .run(($rootScope, $window, $location) => {
+        // Log page views to GTM
+        $rootScope.$on('$stateChangeSuccess', () => {
+            const path = $location.path();
+            const absUrl = $location.absUrl();
+            const virtualUrl = absUrl.substring(absUrl.indexOf(path));
+            $window.dataLayer.push({ event: 'virtualPageView', virtualUrl });
+        });
+    })
+    .constant('CONFIG', {
+        baseUrl: '/',
+    })
 
-  $stateProvider.state('landing', {
-    url: '/landing',
-    templateUrl: `${templateBasePath}templates/landing.html`,
-    controller: 'LandingCtrl',
-  });
-
-  $stateProvider.state('form', {
-    url: '/form',
-    templateUrl: `${templateBasePath}templates/form.html`,
-    controller: 'FormCtrl',
-    abstract: true,
-  });
-
-  $stateProvider.state('form.basicInformation', {
-    url: '/basic-information',
-    templateUrl: `${templateBasePath}templates/formSteps/basicInformation.html`,
-    controller: 'FormBasicInformationCtrl',
-  });
-
-  $stateProvider.state('form.degreeSelection', {
-    url: '/degree-selection',
-    templateUrl: `${templateBasePath}templates/formSteps/degreeSelection.html`,
-    controller: 'FormDegreeSelectionCtrl',
-  });
-
-  $stateProvider.state('form.courseList', {
-    url: '/course-list',
-    templateUrl: `${templateBasePath}templates/formSteps/courseList.html`,
-    controller: 'FormCourseListCtrl',
-  });
-
-  $stateProvider.state('form.completeApplication', {
-    url: '/complete-application',
-    templateUrl: `${templateBasePath}templates/formSteps/completeApplication.html`,
-    controller: 'FormCompleteApplicationCtrl',
-  });
-
-  $stateProvider.state('form.confirmation', {
-    url: '/confirmation',
-    templateUrl: `${templateBasePath}templates/formSteps/confirmation.html`,
-    controller: 'FormConfirmationCtrl',
-  });
-
-  $stateProvider.state('form.completed', {
-    url: '/completed',
-    templateUrl: `${templateBasePath}templates/formSteps/completed.html`,
-    controller: 'FormCompletedCtrl',
-  });
-
-  $urlRouterProvider.otherwise('/landing');
-
-  $mdThemingProvider.definePalette('gfa', {
-    50: 'ffebee',
-    100: 'ffcdd2',
-    200: 'ef9a9a',
-    300: 'e57373',
-    400: 'ef5350',
-    500: '45A1DA',
-    600: '439cd3',
-    700: 'd32f2f',
-    800: 'c62828',
-    900: 'b71c1c',
-    A100: 'ff8a80',
-    A200: 'ff5252',
-    A400: 'ff1744',
-    A700: 'd50000',
-    contrastDefaultColor: 'light',    // whether, by default, text (contrast) on this palette should be dark or light
-    contrastDarkColors: ['50', '100', '200', '300', '400', 'A100'], // hues which contrast should be 'dark' by default
-    contrastLightColors: undefined,    // could also specify this if default was 'dark'
-  });
-
-  $mdThemingProvider.theme('default')
-    .primaryPalette('gfa');
-}])
-
-.run(($rootScope, $window, $location) => {
-  // Log page views to GTM
-  $rootScope.$on('$stateChangeSuccess', () => {
-    const path = $location.path();
-    const absUrl = $location.absUrl();
-    const virtualUrl = absUrl.substring(absUrl.indexOf(path));
-    $window.dataLayer.push({ event: 'virtualPageView', virtualUrl });
-  });
-})
-
-.constant('CONFIG', {
-  baseUrl: '/earned_admission_app/',
-});
+    .controller("LandingCtrl", LandingCtrl)
+    .controller("FormCtrl", FormCtrl)
+    .controller("FormBasicInformationCtrl", FormBasicInformationCtrl)
+    .controller("FormCompleteApplicationCtrl", FormCompleteApplicationCtrl)
+    .controller("FormCompletedCtrl", FormCompletedCtrl)
+    .controller("FormConfirmationCtrl", FormConfirmationCtrl)
+    .controller("FormCourseListCtrl", FormCourseListCtrl)
+    .controller("FormDegreeSelectionCtrl", FormDegreeSelectionCtrl)
+    .factory("FormApiFactory",FormApiFactory)
+    .factory("FormDataFactory",FormDataFactory)
+    .factory("FormHelperFactory",FormHelperFactory)
