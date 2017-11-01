@@ -1,22 +1,10 @@
 const gulp = require('gulp');
 const connect = require('gulp-connect');
 const less = require('gulp-less');
-// const uglify = require('gulp-uglify');
-const concat = require('gulp-concat');
-// const rename = require('gulp-rename');
-const babel = require('gulp-babel');
-
+let webpack = require('gulp-webpack');
+let webpackConfig = require('./webpack.config');
 const files = [
-  'node_modules/angular/angular.js',
-  'node_modules/angular-animate/angular-animate.js',
-  'node_modules/angular-aria/angular-aria.js',
-  'node_modules/angular-material/angular-material.js',
-  'node_modules/angular-ui-router/release/angular-ui-router.js',
-  'js/app.js',
-  'js/filters.js',
-  'js/controllers/**/*.js',
-  'js/directives/**/*.js',
-  'js/services/**/*.js',
+  'js/modules/ea_root/app.js'
 ];
 
 gulp.task('connect', () => {
@@ -36,21 +24,10 @@ gulp.task('watch', () => {
   gulp.watch(['js/**/*.js'], ['concat']);
 });
 
-gulp.task('concat', () => gulp.src(files)
-    .pipe(babel({
-      presets: ['es2015'],
-    }))
-    .pipe(concat('gfa-form.js'))
+gulp.task('concat', () =>
+    gulp.src(files)
+    .pipe(webpack(webpackConfig))
     .pipe(gulp.dest('dist')));
-
-// gulp.task('compress', function(){
-//   return gulp.src(files)
-//     .pipe(concat('gfa-form.js'))
-//     .pipe(gulp.dest('dist'))
-//     .pipe(rename('gfa-form.min.js'))
-//     .pipe(uglify())
-//     .pipe(gulp.dest('dist'));
-// });
 
 gulp.task('default', ['less', 'watch', 'concat']);
 gulp.task('ci', ['less', 'concat']);
