@@ -1,6 +1,6 @@
 /* global app, window */
-function FormDegreeSelectionCtrl($scope, $state, $q, $mdDialog, FormDataFactory, FormApiFactory) {
-    $scope.availableDegrees = FormDataFactory.getAvailableDegrees();
+function FormDegreeSelectionCtrl($scope, $state, $q, $mdDialog, FormService) {
+    $scope.availableDegrees = FormService._formData.getAvailableDegrees();
 
     const findDegree = function findDegree(degreeName) {
         for (let i = 0, length = $scope.availableDegrees.length; i < length; i++) {
@@ -29,12 +29,12 @@ function FormDegreeSelectionCtrl($scope, $state, $q, $mdDialog, FormDataFactory,
             return false;
         }
         $scope.loading = true;
-        FormDataFactory.setDegree($scope.activeDegree.degreeId);
-        const updateLearnerApplicationPromise = FormApiFactory.updateLearnerApplication();
-        const getCoursesByApplicationDegreeIdPromise = FormApiFactory.getCoursesByApplicationDegreeId($scope.activeDegree.applicationDegreeId);
+        FormService._formData.setDegree($scope.activeDegree.degreeId);
+        const updateLearnerApplicationPromise = FormService.updateLearnerApplication();
+        const getCoursesByApplicationDegreeIdPromise = FormService.getCoursesByApplicationDegreeId($scope.activeDegree.applicationDegreeId);
         $q.all([updateLearnerApplicationPromise, getCoursesByApplicationDegreeIdPromise])
             .then((data) => {
-                FormDataFactory.setAvailableCourses(data[1]);
+                FormService._formData.setAvailableCourses(data[1]);
                 $scope.loading = false;
                 $scope.$emit('allowState', 'courseList');
                 $state.go('^.courseList');
@@ -42,5 +42,5 @@ function FormDegreeSelectionCtrl($scope, $state, $q, $mdDialog, FormDataFactory,
         return true;
     };
 }
-FormDegreeSelectionCtrl.$inject = ['$scope', '$state', '$q', '$mdDialog', 'FormDataFactory', 'FormApiFactory'];
+FormDegreeSelectionCtrl.$inject = ['$scope', '$state', '$q', '$mdDialog', 'FormService'];
 export default FormDegreeSelectionCtrl;

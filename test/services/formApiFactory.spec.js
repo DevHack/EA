@@ -1,5 +1,5 @@
 /* global angular, inject */
-describe('API factory', () => {
+/*describe('API factory', () => {
   const baseUrl = 'https://tlbzufb3z4.execute-api.us-east-1.amazonaws.com/PROD/gfa/';
   let FormApiFactory;
   let httpLocalBackend;
@@ -34,4 +34,12 @@ describe('API factory', () => {
     expect(testData[0].required).toBe(false);
     expect(testData[0].degreeIsActive).toBe(true);
   });
+});*/
+import FormAPIFactory from "../../js/modules/enrollment_selection/services/formApiFactory";
+describe("test", ()=>{
+  it("asdf",()=>{
+    console.log(new FormAPIFactory(1,2,3))
+    expect((new FormAPIFactory(1,2,3)).getSum(2,4)).toBe(6);
+  });
+
 });

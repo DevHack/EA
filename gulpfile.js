@@ -4,7 +4,7 @@ const less = require('gulp-less');
 let webpack = require('gulp-webpack');
 let webpackConfig = require('./webpack.config');
 const files = [
-  'js/app.js'
+  'js/modules/ea_root/app.js'
 ];
 
 gulp.task('connect', () => {

@@ -1,20 +1,20 @@
 /* global app, window */
 
-function FormBasicInformationCtrl($scope, $state, $q, $mdDialog, FormDataFactory, FormApiFactory, FormHelperFactory) {
-    $scope.form = FormDataFactory.getData();
+function FormBasicInformationCtrl($scope, $state, $q, $mdDialog, FormService, UtilService) {
+    $scope.form = FormService._formData.getData();
 
     $scope.next = function next(event, basicInformationForm) {
         if (basicInformationForm.$valid) {
             $scope.loading = true;
-            FormDataFactory.setBasicInformation($scope.form);
-            const createLearnerApplicationPromise = FormApiFactory.createLearnerApplication();
-            const getDegreesPromise = FormApiFactory.getDegrees();
+            FormService._formData.setBasicInformation($scope.form);
+            const createLearnerApplicationPromise = FormService.createLearnerApplication();
+            const getDegreesPromise = FormService.getDegrees();
 
             $q.all([createLearnerApplicationPromise, getDegreesPromise]).then((data) => {
-                FormDataFactory.setId(data[0].id);
-                FormDataFactory.setUserAge(data[0].ageAtTimeOfSurvey);
-                FormDataFactory.setAvailableDegrees(data[1]);
-                FormHelperFactory.preloadDegreeImages(data[1]);
+                FormService._formData.setId(data[0].id);
+                FormService._formData.setUserAge(data[0].ageAtTimeOfSurvey);
+                FormService._formData.setAvailableDegrees(data[1]);
+                UtilService.preloadDegreeImages(data[1]);
                 $scope.loading = false;
                 $scope.$emit('allowState', 'degreeSelection');
                 $state.go('^.degreeSelection');
@@ -34,5 +34,5 @@ function FormBasicInformationCtrl($scope, $state, $q, $mdDialog, FormDataFactory
     };
 }
 
-FormBasicInformationCtrl.$inject = ['$scope', '$state', '$q', '$mdDialog', 'FormDataFactory', 'FormApiFactory', 'FormHelperFactory'];
+FormBasicInformationCtrl.$inject = ['$scope', '$state', '$q', '$mdDialog', 'FormService', 'UtilService'];
 export default  FormBasicInformationCtrl;

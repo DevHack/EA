@@ -1,10 +1,10 @@
 /* global app, angular, window */
 import angular from "angular";
 
-function FormCourseListCtrl($scope, $state, $mdDialog, FormDataFactory, FormApiFactory) {
-    $scope.form = FormDataFactory.getData();
-    $scope.userAge = FormDataFactory.getUserAge();
-    $scope.availableCourses = FormDataFactory.getAvailableCourses();
+function FormCourseListCtrl($scope, $state, $mdDialog, FormService) {
+    $scope.form = FormService._formData.getData();
+    $scope.userAge = FormService._formData.getUserAge();
+    $scope.availableCourses = FormService._formData.getAvailableCourses();
     let requiredNumberOfCourses;
     if ($scope.userAge < 22) {
         requiredNumberOfCourses = $scope.$parent.applicationOptions.age21AndUnderCoursesRequired;
@@ -81,8 +81,8 @@ function FormCourseListCtrl($scope, $state, $mdDialog, FormDataFactory, FormApiF
             } else {
                 // We're either saving directly after the short list, or saving after the full list
                 $scope.loading = true;
-                FormDataFactory.setCourses($scope.form);
-                FormApiFactory.updateLearnerApplication().then(() => {
+                FormService._formData.setCourses($scope.form);
+                FormService.updateLearnerApplication().then(() => {
                     $scope.loading = false;
                     $scope.$emit('allowState', 'completeApplication');
                     $state.go('^.completeApplication');
@@ -92,5 +92,5 @@ function FormCourseListCtrl($scope, $state, $mdDialog, FormDataFactory, FormApiF
     };
 }
 
-FormCourseListCtrl.$inject = ['$scope', '$state', '$mdDialog', 'FormDataFactory', 'FormApiFactory'];
+FormCourseListCtrl.$inject = ['$scope', '$state', '$mdDialog', 'FormService'];
 export default  FormCourseListCtrl;
